@@ -18,6 +18,25 @@ describe('backend-express-template routes', () => {
   });
 
 
+  it('should return details of a specific author', async () => {
+    const res = await request(app).get('/authors/3');
+    console.log('res.body', res.body);
+    const yann = {
+      id: '3',
+      name: 'Yann Martel',
+      dob: '06/25/1963',
+      pob: 'Salamanca, Spain',
+      books: [{
+        id: 5,
+        released: 2001,
+        title: 'Life of Pi'
+      }]
+    };
+
+    expect(res.body).toEqual(yann);
+  });
+
+
 
   afterAll(() => {
     pool.end();
