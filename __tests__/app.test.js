@@ -7,9 +7,15 @@ describe('backend-express-template routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('example test - delete me!', () => {
-    expect(1).toEqual(1);
+
+  it('should return a list of authors', async () => {
+    const res = await request(app).get('/authors');
+    expect(res.body.length).toEqual(7);
+    console.log('res.body', res.body);
   });
+
+
+
   afterAll(() => {
     pool.end();
   });
