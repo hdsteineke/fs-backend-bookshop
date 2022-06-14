@@ -47,3 +47,23 @@ VALUES
   ('Pleasure Activism', 2019),
   ('Spell of the Sensuous', 1996)
   ;
+
+  CREATE table authors_books(
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    author_id BIGINT,
+    book_id BIGINT,
+    FOREIGN KEY (author_id) REFERENCES authors(id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
+  );
+
+  INSERT INTO authors_books (author_id, book_id) VALUES
+  (1, 1),
+  (2, 2),
+  (2, 3),
+  (2, 4),
+  (3, 5),
+  (4, 7),
+  (5, 6),
+  (6, 6),
+  (7, 8)
+  ;
