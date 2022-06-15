@@ -38,8 +38,10 @@ describe('backend-express-template routes', () => {
 
   it('should return list of books', async () => {
     const res = await request(app).get('/books');
-    console.log('res', res);
+    const sweetgrass = res.body.find((book) => book.id === '1');
+    console.log('sweetgrass', sweetgrass);
     expect(res.body.length).toEqual(8);
+    expect(sweetgrass).toHaveProperty('title', 'Braiding Sweetgrass');
   });
 
 
