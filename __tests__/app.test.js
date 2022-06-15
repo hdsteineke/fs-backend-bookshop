@@ -20,7 +20,6 @@ describe('backend-express-template routes', () => {
 
   it('should return details of a specific author', async () => {
     const res = await request(app).get('/authors/3');
-    console.log('res.body', res.body);
     const yann = {
       id: '3',
       name: 'Yann Martel',
@@ -34,6 +33,13 @@ describe('backend-express-template routes', () => {
     };
 
     expect(res.body).toEqual(yann);
+  });
+
+
+  it('should return list of books', async () => {
+    const res = await request(app).get('/books');
+    console.log('res', res);
+    expect(res.body.length).toEqual(8);
   });
 
 
