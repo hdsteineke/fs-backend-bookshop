@@ -67,7 +67,12 @@ describe('backend-express-template routes', () => {
     expect(res.body.title).toBe('The Secret Garden');
   });
 
+  it('POST should create a new author', async () => {
+    const res = await request(app).post('/authors').send({ name: 'Frances Hodgson Burnett', dob: '11/24/1849', pob: 'Cheetham, Manchester, England' });
+    console.log('res.body Frances', res.body);
 
+    expect(res.body).toHaveProperty('name', 'Frances Hodgson Burnett');
+  });
 
   afterAll(() => {
     pool.end();
