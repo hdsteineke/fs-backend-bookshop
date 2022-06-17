@@ -45,7 +45,6 @@ describe('backend-express-template routes', () => {
 
   it('should return a specific book detail', async () => {
     const res = await request(app).get('/books/2');
-    console.log('res.body', res.body);
     const compass = {
       authors: [{
         dob: '10/19/1946',
@@ -60,6 +59,12 @@ describe('backend-express-template routes', () => {
 
     expect(res.body).toEqual(compass);
 
+  });
+
+  it('POST /books should create a new book', async () => {
+    const res = await request(app).post('/books').send({ title: 'The Secret Garden', released: 1911 });
+
+    expect(res.body.title).toBe('The Secret Garden');
   });
 
 
