@@ -39,9 +39,27 @@ describe('backend-express-template routes', () => {
   it('should return list of books', async () => {
     const res = await request(app).get('/books');
     const sweetgrass = res.body.find((book) => book.id === '1');
-    console.log('sweetgrass', sweetgrass);
     expect(res.body.length).toEqual(8);
     expect(sweetgrass).toHaveProperty('title', 'Braiding Sweetgrass');
+  });
+
+  it('should return a specific book detail', async () => {
+    const res = await request(app).get('/books/2');
+    console.log('res.body', res.body);
+    const compass = {
+      authors: [{
+        dob: '10/19/1946',
+        id: 2,
+        name: 'Philip Pullman',
+        pob: 'Norwich, England'
+      }],
+      id: '2',
+      title: 'The Golden Compass',
+      released: 1995
+    };
+
+    expect(res.body).toEqual(compass);
+
   });
 
 
